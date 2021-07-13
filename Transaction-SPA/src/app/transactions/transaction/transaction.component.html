@@ -1,0 +1,73 @@
+
+
+<div mat-dialog-content>
+  
+  <form [formGroup]="transactionService.transactionForm">
+    <h1 mat-dialog-title>Transaction Create</h1>
+      <mat-grid-list cols="2">
+          
+          <mat-grid-tile>
+              <div class="controles-container">
+                <!-- <input type="hidden" formControlName="$key"> for primary key-->
+              
+               <mat-form-field>
+          <mat-select formControlName="typeId" placeholder="Type">
+          
+          <ng-container *ngFor="let type of types">
+            <mat-option  value="{{type.id}}">{{type.description}}</mat-option>
+          </ng-container>
+          </mat-select>
+        </mat-form-field> 
+            
+      
+         <mat-form-field>
+                  <input formControlName="firstName" matInput placeholder="First Name">
+                  <mat-error *ngIf="transactionService.transactionForm.controls['firstName'].errors?.required">This field is required.</mat-error>
+                </mat-form-field>
+               
+                <mat-form-field>
+                  <input formControlName="email" matInput placeholder="Email">
+                  <mat-error *ngIf="transactionService.transactionForm.controls['email'].errors?.required">This field is required.</mat-error>
+                  <mat-error *ngIf="transactionService.transactionForm.controls['email'].errors?.pattern">Please enter a valid email address.</mat-error>
+                </mat-form-field>
+                
+                <mat-form-field>
+                  <input formControlName="amountTotal" matInput placeholder="Amount Total">
+                </mat-form-field>
+  
+            <div mat-dialog-actions>
+              <button mat-raised-button color="primary" type="submit" (click)="closeDialog()">Back to List</button>
+              <button class="buttonSave" mat-raised-button (click)="SaveTransaction()" [disabled]="transactionService.transactionForm.invalid">Save</button>
+            </div>
+  
+              </div>
+        
+        
+      
+            </mat-grid-tile>
+        
+        
+        <mat-grid-tile>
+              <div class="controles-container">
+         <mat-form-field>
+                  <input formControlName="surname" matInput placeholder="Surname">
+                  
+                </mat-form-field>
+          
+          <mat-form-field>
+                  <input formControlName="cellPhone" matInput placeholder="cellphone">
+                  <mat-error *ngIf="transactionService.transactionForm.controls['cellPhone'].errors?.required">This field is required.</mat-error>
+                  
+                </mat-form-field>
+              </div>
+        
+        
+        </mat-grid-tile>
+      </mat-grid-list>
+    
+  
+  
+  
+  </form>
+  
+  </div>
